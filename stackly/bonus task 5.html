@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management System</title>
+</head>
+<body>
+
+<h2>Employee Management System</h2>
+<p>Press <b>F12 → Console</b> to see the output.</p>
+
+<script>
+
+let employees = [];
+
+// 1. Add Employee
+function addEmployee(id, name, salary) {
+    employees.push({ id, name, salary });
+    console.log(name + " added successfully.");
+}
+
+// Add Sample Employees
+addEmployee(101, "Gayatri", 25000);
+addEmployee(102, "Haritha", 30000);
+addEmployee(103, "Priya", 28000);
+
+// 2. View Employees
+function viewEmployees() {
+    console.log("\nEmployee List");
+    console.table(employees);
+}
+
+viewEmployees();
+
+// 3. Search Employee by ID
+function searchById(id) {
+    let emp = employees.find(e => e.id === id);
+
+    if (emp)
+        console.log("Employee Found:", emp);
+    else
+        console.log("Employee Not Found");
+}
+
+searchById(102);
+
+// 4. Calculate Salary + Bonus
+function calculateBonus(id) {
+    let emp = employees.find(e => e.id === id);
+
+    if (emp) {
+        let bonus = emp.salary * 0.10;
+        let total = emp.salary + bonus;
+
+        console.log(
+            emp.name +
+            " Salary = " + emp.salary +
+            ", Bonus = " + bonus +
+            ", Total = " + total
+        );
+    }
+}
+
+calculateBonus(101);
+
+// 5. Remove Employee
+function removeEmployee(id) {
+    employees = employees.filter(e => e.id !== id);
+    console.log("Employee Removed");
+}
+
+removeEmployee(103);
+
+viewEmployees();
+
+// 6. Sort Employees by Salary
+function sortSalary() {
+    employees.sort((a, b) => a.salary - b.salary);
+    console.log("\nSorted by Salary");
+    console.table(employees);
+}
+
+sortSalary();
+
+// 7. Find Employee by Name
+function findByName(name) {
+    let emp = employees.find(e => e.name.toLowerCase() === name.toLowerCase());
+
+    if (emp)
+        console.log("Employee Found:", emp);
+    else
+        console.log("Employee Not Found");
+}
+
+findByName("Gayatri");
+
+// 8. Display Employee Details using Destructuring
+function displayDetails() {
+
+    employees.forEach(emp => {
+
+        let { id, name, salary } = emp;
+
+        console.log(
+            "ID: " + id +
+            ", Name: " + name +
+            ", Salary: " + salary
+        );
+
+    });
+
+}
+
+displayDetails();
+
+</script>
+
+</body>
+</html>
