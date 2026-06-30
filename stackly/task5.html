@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Practice Tasks</title>
+</head>
+<body>
+    <h2>Open Console (F12 → Console) to see the output</h2>
+
+<script>
+    console.log("Hello World");
+
+// 1. Employee Salary
+function yearlySalary(monthlySalary) {
+    return monthlySalary * 12;
+}
+console.log("1. Yearly Salary: ₹" + yearlySalary(45000));
+
+
+// 2. Student Pass or Fail
+function checkResult(marks) {
+    return marks >= 35 ? "Pass" : "Fail";
+}
+console.log("2. Student Result:", checkResult(72));
+
+
+// 3. Food Bill
+function foodBill(price, quantity) {
+    return price * quantity;
+}
+console.log("3. Total Bill: ₹" + foodBill(180, 3));
+
+
+// 4. Welcome Employee
+function welcomeEmployee(name, department) {
+    console.log("4. Welcome " + name + " Department: " + department);
+}
+welcomeEmployee("Naveen", "Development");
+
+
+// 5. Shopping Discount
+function finalAmount(price, discount) {
+    return price - discount;
+}
+console.log("5. Final Amount: ₹" + finalAmount(5000, 500));
+
+
+// 6. Company Login (Callback)
+function login(callback) {
+    console.log("6. Login Successful");
+    callback();
+}
+
+function dashboard() {
+    console.log("Loading Dashboard...");
+}
+
+login(dashboard);
+
+
+// 7. Food Delivery (Higher Order Function)
+function delivery(step) {
+    step();
+}
+
+delivery(() => {
+    console.log("7. Order Received");
+    console.log("Preparing Food");
+    console.log("Out for Delivery");
+    console.log("Delivered");
+});
+
+
+// 8. Lucky Draw (Generator)
+function* coupons() {
+    yield "10%";
+    yield "20%";
+    yield "50%";
+    yield "Better Luck Next Time";
+}
+
+const coupon = coupons();
+console.log("8.", coupon.next().value);
+console.log(coupon.next().value);
+console.log(coupon.next().value);
+console.log(coupon.next().value);
+
+
+// 9. Employee Bonus (Currying)
+function bonus(salary) {
+    return function(extraBonus) {
+        return salary + extraBonus;
+    };
+}
+console.log("9. Total Salary: ₹" + bonus(50000)(5000));
+
+
+// 10. Merge Employee Details
+const employeePersonal = {
+    name: "Naveen",
+    age: 22
+};
+
+const employeeOffice = {
+    department: "Development",
+    salary: 50000
+};
+
+const employee = {
+    ...employeePersonal,
+    ...employeeOffice
+};
+
+console.log("10.", employee);
+
+
+// 11. Shopping Cart Merge
+const cart1 = ["Mobile", "Laptop"];
+const cart2 = ["Headphone", "Mouse"];
+
+const cart = [...cart1, ...cart2];
+console.log("11.", cart);
+
+
+// 12. Student Marks (Rest Operator)
+function student(name, ...marks) {
+    let total = marks.reduce((sum, mark) => sum + mark, 0);
+    let average = total / marks.length;
+
+    console.log("12. Student:", name);
+    console.log("Total:", total);
+    console.log("Average:", average);
+}
+
+student("Naveen", 90, 85, 88, 95);
+
+
+// 13. Product Details (Object Destructuring)
+const product = {
+    name: "Laptop",
+    price: 65000,
+    brand: "Dell",
+    stock: 20
+};
+
+const { name, price } = product;
+
+console.log("13. Name:", name);
+console.log("Price:", price);
+
+
+// 14. Customer Details (Array Destructuring)
+const customer = [101, "Naveen", "Chennai", 9876543210];
+
+const [id, customerName, city] = customer;
+
+console.log("14. ID:", id);
+console.log("Name:", customerName);
+console.log("City:", city);
+
+
+// 15. Add Product
+let cartItems = ["Mobile", "Laptop"];
+cartItems.push("Headphone");
+console.log("15.", cartItems);
+
+
+// 16. Remove Last Product
+cartItems.pop();
+console.log("16.", cartItems);
+
+
+// 17. Replace Employee
+let employees = ["Rahul", "Arun", "John", "David"];
+employees.splice(2, 1, "Naveen");
+console.log("17.", employees);
+
+
+// 18. Search Product
+const products = ["Mouse", "Keyboard", "Monitor", "Laptop"];
+console.log("18. Laptop Available:", products.includes("Laptop"));
+
+
+// 19. Employee Ranking
+const salaries = [25000, 45000, 30000, 70000];
+salaries.sort((a, b) => a - b);
+console.log("19.", salaries);
+
+
+// 20. Reverse Chat Messages
+const messages = ["Hi", "Hello", "How are you?", "Good Morning"];
+messages.reverse();
+console.log("20.", messages);
+
+</script>
+
+</body>
+</html>
