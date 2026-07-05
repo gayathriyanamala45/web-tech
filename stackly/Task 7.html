@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Tasks 1-5</title>
+</head>
+<body>
+
+<h2>JavaScript Tasks 1-5</h2>
+
+<script>
+
+// ================= Task 1 =================
+
+let students = [
+    {name:"Gayathri",id:101,mark:85},
+    {name:"Haritha",id:102,mark:45},
+    {name:"Ramu",id:103,mark:25}
+];
+
+console.log("All Students");
+for(let s of students){
+    console.log(s);
+}
+
+console.log("Student Names");
+for(let s of students){
+    console.log(s.name);
+}
+
+console.log("Find ID 102");
+for(let s of students){
+    if(s.id==102){
+        console.log(s);
+    }
+}
+
+console.log("Passed Students");
+for(let s of students){
+    if(s.mark>=35){
+        console.log(s.name);
+    }
+}
+
+console.log("Total Students :",students.length);
+
+// ================= Task 2 =================
+
+let employees=[
+{name:"Gayathri",salary:30000},
+{name:"Haritha",salary:45000},
+{name:"Ramu",salary:60000}
+];
+
+let high=employees[0];
+let low=employees[0];
+let total=0;
+
+for(let e of employees){
+
+    if(e.salary>high.salary){
+        high=e;
+    }
+
+    if(e.salary<low.salary){
+        low=e;
+    }
+
+    total+=e.salary;
+}
+
+console.log("Highest Salary :",high.salary);
+console.log("Lowest Salary :",low.salary);
+
+console.log("Bonus Salary");
+for(let e of employees){
+    console.log(e.name, e.salary+5000);
+}
+
+console.log("Total Salary :",total);
+
+console.log("Above 40000");
+for(let e of employees){
+    if(e.salary>40000){
+        console.log(e.name);
+    }
+}
+
+// ================= Task 3 =================
+
+let products=[
+{name:"Laptop",price:50000},
+{name:"Mouse",price:500},
+{name:"Keyboard",price:1500}
+];
+
+let bill=0;
+
+console.log("Products");
+
+for(let p of products){
+    console.log(p.name);
+    bill+=p.price;
+}
+
+console.log("Total Bill :",bill);
+
+console.log("Search Mouse");
+
+for(let p of products){
+    if(p.name=="Mouse"){
+        console.log(p);
+    }
+}
+
+console.log("Discount Price");
+
+let finalBill=0;
+
+for(let p of products){
+    let price=p.price-(p.price*10/100);
+    console.log(p.name,price);
+    finalBill+=price;
+}
+
+console.log("Final Bill :",finalBill);
+
+// ================= Task 4 =================
+
+let account={
+name:"Gayathri",
+balance:50000
+};
+
+account.balance+=10000;
+console.log("Deposit :",account.balance);
+
+account.balance-=5000;
+console.log("Withdraw :",account.balance);
+
+console.log("Current Balance :",account.balance);
+
+if(account.balance<20000){
+    console.log("Low Balance");
+}else{
+    console.log("Balance OK");
+}
+
+console.log(account);
+
+// ================= Task 5 =================
+
+let username=prompt("Enter Username");
+let password=prompt("Enter Password");
+
+if(username=="admin" && password=="1234"){
+    alert("Welcome");
+}else{
+    alert("Invalid Username or Password");
+}
+
+</script>
+
+</body>
+</html>
