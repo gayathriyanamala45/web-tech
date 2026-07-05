@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Full Assignment Project</title>
+</head>
+<body>
+
+<h2>Welcome JavaScript - Full Tasks Project</h2>
+<p>Open Console (F12) to see output</p>
+
+<script>
+
+console.log("===== JAVASCRIPT FULL PROJECT START =====");
+
+// ================= TASK 1 =================
+console.log("\n--- Task 1: Student Management ---");
+
+let students = [
+    {name:"Naveen", id:101, mark:85},
+    {name:"John", id:102, mark:45},
+    {name:"Arun", id:103, mark:25}
+];
+
+console.log("All Students:", students);
+console.log("Names:", students.map(s => s.name));
+console.log("Find ID 102:", students.find(s => s.id === 102));
+console.log("Passed Students:", students.filter(s => s.mark >= 35));
+console.log("Total Students:", students.length);
+
+// ================= TASK 2 =================
+console.log("\n--- Task 2: Employee Salary ---");
+
+let employees = [
+    {name:"Naveen", salary:30000},
+    {name:"John", salary:45000},
+    {name:"Arun", salary:60000}
+];
+
+let salaries = employees.map(e => e.salary);
+
+console.log("Highest Salary:", Math.max(...salaries));
+console.log("Lowest Salary:", Math.min(...salaries));
+console.log("Total Salary:", salaries.reduce((a,b)=>a+b,0));
+console.log("Bonus +5000:", employees.map(e => ({...e, salary:e.salary+5000})));
+console.log("Above 40000:", employees.filter(e => e.salary > 40000));
+
+// ================= TASK 3 =================
+console.log("\n--- Task 3: Shopping Cart ---");
+
+let products = [
+    {name:"Laptop", price:50000},
+    {name:"Mouse", price:500},
+    {name:"Keyboard", price:1500}
+];
+
+console.log("Product Names:", products.map(p => p.name));
+
+let totalBill = products.reduce((sum,p)=>sum+p.price,0);
+console.log("Total Bill:", totalBill);
+
+console.log("Search Mouse:", products.find(p => p.name === "Mouse"));
+
+let discount = products.map(p => ({
+    ...p,
+    price: p.price - (p.price * 0.10)
+}));
+
+console.log("After 10% Discount:", discount);
+
+// ================= TASK 4 =================
+console.log("\n--- Task 4: Bank Account ---");
+
+let account = {name:"Naveen", balance:50000};
+
+account.balance += 10000;
+console.log("After Deposit:", account.balance);
+
+account.balance -= 5000;
+console.log("After Withdraw:", account.balance);
+
+console.log("Account Details:", account);
+
+if(account.balance < 20000){
+    console.log("Low Balance Warning");
+}
+
+// ================= TASK 5 =================
+console.log("\n--- Task 5: Login System ---");
+
+let username = "admin";
+let password = "1234";
+
+if(username === "admin" && password === "1234"){
+    console.log("Welcome User");
+} else {
+    console.log("Invalid Username or Password");
+}
+
+// ================= TASK 6 =================
+console.log("\n--- Task 6: Traffic Signal ---");
+
+let signal = "Yellow";
+
+switch(signal){
+    case "Red":
+        console.log("Stop");
+        break;
+    case "Yellow":
+        console.log("Ready");
+        break;
+    case "Green":
+        console.log("Go");
+        break;
+}
+
+// ================= TASK 7 =================
+console.log("\n--- Task 7: ATM Machine ---");
+
+let option = 2;
+let balance = 10000;
+
+switch(option){
+    case 1:
+        console.log("Balance:", balance);
+        break;
+    case 2:
+        console.log("Deposit Done");
+        break;
+    case 3:
+        console.log("Withdraw Done");
+        break;
+    case 4:
+        console.log("Exit");
+        break;
+}
+
+// ================= TASK 8 =================
+console.log("\n--- Task 8: Cricket Score ---");
+
+let score = [10,25,40,60,80,100];
+
+let high = Math.max(...score);
+let low = Math.min(...score);
+let sum = score.reduce((a,b)=>a+b,0);
+
+console.log("Highest:", high);
+console.log("Lowest:", low);
+console.log("Total:", sum);
+console.log("Average:", sum/score.length);
+
+// ================= TASK 9 =================
+console.log("\n--- Task 9: Movie Ticket ---");
+
+let age = 19;
+let confirmEntry = true;
+
+if(confirmEntry){
+    console.log(age >= 18 ? "Allow Movie" : "Not Allowed");
+}
+
+// ================= TASK 10 =================
+console.log("\n--- Task 10: Hospital Appointment ---");
+
+let token = 3;
+
+switch(token){
+    case 1:
+        console.log("Doctor A");
+        break;
+    case 2:
+        console.log("Doctor B");
+        break;
+    case 3:
+        console.log("Doctor C");
+        break;
+}
+
+// ================= TASK 11 =================
+console.log("\n--- Task 11: Array Methods ---");
+
+let fruits = ["Apple","Orange","Banana"];
+
+fruits.push("Mango");
+console.log("Push:", fruits);
+
+fruits.pop();
+console.log("Pop:", fruits);
+
+fruits.shift();
+console.log("Shift:", fruits);
+
+fruits.unshift("Grapes");
+console.log("Unshift:", fruits);
+
+// ================= TASK 12 =================
+console.log("\n--- Task 12: Higher Order Methods ---");
+
+let emp = [
+    {name:"A",salary:20000},
+    {name:"B",salary:35000},
+    {name:"C",salary:50000},
+    {name:"D",salary:70000}
+];
+
+console.log(emp.map(e => e.salary + 5000));
+console.log(emp.filter(e => e.salary > 30000));
+console.log(emp.find(e => e.salary === 50000));
+console.log(emp.reduce((a,b)=>a+b.salary,0));
+console.log(emp.some(e => e.salary > 60000));
+console.log(emp.every(e => e.salary > 15000));
+
+// ================= TASK 13 =================
+console.log("\n--- Task 13: String Methods ---");
+
+let company = " Stackly IT ";
+
+console.log(company.toUpperCase());
+console.log(company.toLowerCase());
+console.log(company.trim());
+console.log(company.replace("IT","Software"));
+console.log(company.includes("Stackly"));
+console.log(company.split(" "));
+
+// ================= TASK 14 =================
+console.log("\n--- Task 14: Digital Clock ---");
+
+let count = 0;
+
+let timer = setInterval(() => {
+    console.log(new Date().toLocaleTimeString());
+    count++;
+
+    if(count === 10){
+        clearInterval(timer);
+        console.log("Clock Stopped");
+    }
+},1000);
+
+// ================= TASK 15 =================
+console.log("\n--- Task 15: Fake Store API ---");
+
+fetch("https://fakestoreapi.com/products")
+.then(res => res.json())
+.then(data => {
+
+    console.log("Titles:", data.map(p=>p.title));
+    console.log("Prices:", data.map(p=>p.price));
+    console.log("Above 100:", data.filter(p=>p.price>100));
+    console.log("Total Products:", data.length);
+    console.log("Categories:", [...new Set(data.map(p=>p.category))]);
+
+});
+
+console.log("===== PROJECT END =====");
+
+</script>
+
+</body>
+</html>
