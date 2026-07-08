@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Product Tasks (1-20)</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f4f4f4;
+            margin:20px;
+        }
+
+        h1{
+            text-align:center;
+        }
+
+        .top{
+            display:flex;
+            gap:10px;
+            margin-bottom:20px;
+            flex-wrap:wrap;
+        }
+
+        input,select,button{
+            padding:10px;
+        }
+
+        #count{
+            font-size:20px;
+            font-weight:bold;
+            margin-bottom:20px;
+        }
+
+        #products{
+            display:flex;
+            flex-wrap:wrap;
+            gap:20px;
+        }
+
+        .card{
+            width:250px;
+            background:white;
+            border-radius:10px;
+            padding:15px;
+            box-shadow:0 0 5px gray;
+        }
+
+        img{
+            width:100%;
+            height:180px;
+            object-fit:contain;
+        }
+
+        button{
+            background:green;
+            color:white;
+            border:none;
+            cursor:pointer;
+            margin-top:10px;
+        }
+
+        button:hover{
+            background:darkgreen;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Company Level Product Page</h1>
+
+<div class="top">
+
+<input
+type="text"
+id="search"
+placeholder="Search Product">
+
+<select id="category">
+
+<option value="all">All Categories</option>
+<option value="electronics">Electronics</option>
+<option value="jewelery">Jewellery</option>
+<option value="men's clothing">Men's Clothing</option>
+<option value="women's clothing">Women's Clothing</option>
+
+</select>
+
+<button onclick="showFirst5()">First 5</button>
+
+<button onclick="showLast5()">Last 5</button>
+
+<button onclick="highestRated()">Highest Rated</button>
+
+<button onclick="cheapest()">Cheapest</button>
+
+<button onclick="costliest()">Costliest</button>
+
+</div>
+
+<div id="count"></div>
+
+<div id="products"></div>
+
+<script>
+
+let allProducts=[];
+
+fetch("https://fakestoreapi.com/products")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+allProducts=data;
+
+displayProducts(allProducts);
+
+})
+
+.catch(()=>{
+
+document.getElementById("products").innerHTML=`
+
+<h2 style="color:red;">
+❌ Unable to Load Products
+</h2>
+
+<p>Please try again later.</p>
+
+`;
+
+});
+
+function displayProducts(products){
+
+document.getElementById("count").innerHTML=
+"Total Products : "+products.length;
+
+let output="";
+
+products.forEach((item,index)=>{
+
+let description=item.description;
+
+if(description.length>100){
+
+description=
+description.substring(0,100)+
+"... Read More";
+
+}
+
+output+=`
+
+<div class="card">
+
+<img src="${item.image}">
+
+<h3>
+Product ${index+1}<br>
+${item.title}
+</h3>
+
+<p><b>Category :</b> ${item.category}</p>
+
+<p><b>Price :</b> $${item.price}</p>
+
+<p><b>Rating :</b> ⭐ ${item.rating.rate}</p>
+
+<p>${description}</p>
+
+<button>Buy Now</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("products").innerHTML=output;
+
+}
+
+document.getElementById("search").addEventListener("keyup",function(){
+
+let text=this.value.toLowerCase();
+
+let result=allProducts.filter(item=>
+
+item.title.toLowerCase().includes(text)
+
+);
+
+displayProducts(result);
+
+});
+
+document.getElementById("category").addEventListener("change",function(){
+
+let value=this.value;
+
+if(value=="all"){
+
+displayProducts(allProducts);
+
+}
+
+else{
+
+let result=allProducts.filter(item=>
+
+item.category==value
+
+);
+
+displayProducts(result);
+
+}
+
+});
+
+function showFirst5(){
+
+displayProducts(allProducts.slice(0,5));
+
+}
+
+function showLast5(){
+
+displayProducts(allProducts.slice(-5));
+
+}
+
+function highestRated(){
+
+let highest=allProducts.reduce((a,b)=>
+
+a.rating.rate>b.rating.rate?a:b
+
+);
+
+displayProducts([highest]);
+
+}
+
+function cheapest(){
+
+let low=allProducts.reduce((a,b)=>
+
+a.price<b.price?a:b
+
+);
+
+displayProducts([low]);
+
+}
+
+function costliest(){
+
+let high=allProducts.reduce((a,b)=>
+
+a.price>b.price?a:b
+
+);
+
+displayProducts([high]);
+
+}
+
+</script>
+</body>
+</html>
