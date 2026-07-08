@@ -244,33 +244,19 @@ a.rating.rate>b.rating.rate?a:b
 );
 
 displayProducts([highest]);
-
 }
-
 function cheapest(){
-
 let low=allProducts.reduce((a,b)=>
-
 a.price<b.price?a:b
-
 );
-
 displayProducts([low]);
-
 }
-
 function costliest(){
-
 let high=allProducts.reduce((a,b)=>
-
 a.price>b.price?a:b
-
 );
-
 displayProducts([high]);
-
 }
-
 </script>
 </body>
 </html>

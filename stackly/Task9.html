@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Search Filter</title>
+
+    <style>
+        body{
+            font-family: Arial;
+        }
+
+        .product{
+            border:1px solid black;
+            padding:10px;
+            margin:10px;
+            width:250px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h2>Product Search & Filter</h2>
+
+<input type="text" id="search" placeholder="Search Product">
+
+<br><br>
+
+<select id="category">
+    <option value="all">All Categories</option>
+</select>
+
+<br><br>
+
+<input type="number" id="price" placeholder="Enter Maximum Price">
+
+<br><br>
+
+<button onclick="filterProducts()">Search</button>
+
+<h3 id="count"></h3>
+
+<div id="products"></div>
+
+<script>
+
+let allProducts = [];
+
+// Fetch API
+
+fetch("https://dummyjson.com/products")
+
+.then(function(response){
+    return response.json();
+})
+
+.then(function(data){
+
+    allProducts = data.products;
+
+    displayProducts(allProducts);
+
+    loadCategories();
+
+})
+
+.catch(function(error){
+
+    document.getElementById("products").innerHTML =
+    "Error loading products";
+
+});
+
+// Display Products
+
+function displayProducts(products){
+
+    let output = "";
+
+    if(products.length > 0){
+
+        products.forEach(function(product){
+
+            output += `
+
+            <div class="product">
+
+            <h3>${product.title}</h3>
+
+            <p>Category: ${product.category}</p>
+
+            <p>Price: ₹${product.price}</p>
+
+            </div>
+
+            `;
+
+        });
+    }
+    else{
+
+        output = "<h3>No Products Found</h3>";
+
+    }
+
+    document.getElementById("products").innerHTML = output;
+
+    document.getElementById("count").innerHTML =
+    "Total Products : " + products.length;
+
+}
+
+// Load Categories
+
+function loadCategories(){
+
+    let categoryList = [];
+
+    allProducts.forEach(function(product){
+
+        if(categoryList.includes(product.category) == false){
+
+            categoryList.push(product.category);
+
+        }
+
+    });
+
+    let option = "";
+
+    categoryList.forEach(function(category){
+
+        option += `<option value="${category}">
+        ${category}
+        </option>`;
+
+    });
+
+    document.getElementById("category").innerHTML += option;
+
+}
+// Filter Function
+function filterProducts(){
+    let searchText =
+    document.getElementById("search").value.toLowerCase();
+
+    let selectedCategory =
+    document.getElementById("category").value;
+
+    let maxPrice =
+    document.getElementById("price").value;
+
+    let filtered = [];
+    allProducts.forEach(function(product){
+        if(
+            product.title.toLowerCase().includes(searchText)
+            &&
+            (selectedCategory == "all" ||
+             product.category == selectedCategory)
+            &&
+            (maxPrice == "" ||
+             product.price <= maxPrice)
+        ){
+            filtered.push(product);
+        }
+    });
+    displayProducts(filtered);
+}
+</script>
+</body>
+</html>
